@@ -1,0 +1,74 @@
+.container{
+    padding-top: 120px;
+}
+.container .info{
+    margin-top: 80px;
+}
+.container .info h3{
+    font-size: 35px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 700;
+    color: #444;
+    margin-bottom: 10px;
+}
+.container .info p{
+    font-size: 22px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 600;
+    color: #555;
+
+}
+
+
+@media (max-width : 992px){
+    .container{
+        padding-top: 0;
+    }
+    .container .info{
+        margin-top: 50px;
+    }
+    
+}
+
+.form{
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+form{  
+    padding: 20px;
+}
+form p{
+    margin-top: 20px;
+}
+/*                       start   join-travel                          */
+.jointravel{
+    margin-top: 70px;
+    border-radius : 30px;
+}
+.jointravel h3{
+    color: #FFF;
+    margin-top:20px;
+}
+.jointravel p{
+    color: #FFF;    
+    font-size: 18px;
+}
+.jointravel label{
+    color: #FFF;    
+    font-size: 18px;
+}
+.jointravel form{
+    width: 700px;
+    margin: 20px auto;
+    border: 1px solid #ddd;
+}
+@media (max-width : 992px){
+    .jointravel form{
+        width: 400px;
+        margin: 20px auto;
+        border: 1px solid #ddd;
+    }
+}
+
+
+/*                        end  join-travel                                **/

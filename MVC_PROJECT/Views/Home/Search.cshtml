@@ -1,0 +1,87 @@
+﻿@using MVC_PROJECT.Models
+@model IEnumerable<Trips>
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Info-trip</title>
+    <link rel="stylesheet" href="~/bootstrap 4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/bootstrap 4/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/Content/Style-page.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $('#myInput').on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $(".myH").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+
+    </script>
+
+</head>
+
+<body>
+
+    <div class="search-info">
+        <div class="container">
+            <h3>  Available flights   </h3>
+            <p> Looking for other types and regions ?  </p>
+            <div class="input-group mb-3">
+
+
+                <input type="text" id="myInput" class="form-control" placeholder="Search For Travel" aria-label="" aria-describedby="basic-addon1">
+            </div>
+            <div id="myR" class="row">
+
+                @foreach (var item in Model)
+                {
+                    <div id="myType" class="col-lg-4 col-md-6 col-sm-12 myH">
+                        <div class="card border-info">
+                            <img src="~/image/search1.jpg" alt="">
+                            <div class="card-header">
+                                <h5 class="card-title">@item.ClassificationTrips.Type</h5>
+                                <h6 class="card-subtitle mb-2 text-muted"> @item.DateStart - @item.DateEnd</h6>
+                            </div>
+                            <div class="card-body">
+                                <p class=" card-text"> @item.Distance </p>
+                                <p class="card-text"> @item.Descripition </p>
+
+                            </div>
+                            <div class="card-footer">
+                                <a href="@Url.Action("JoinTrip", "Customer")" class="card-link book-now">Book Now</a>
+                                <a href="@Url.Action("InfoTrip", "Home" , new {id=item.ID_Trip})" class="card-link travel-info">Trip Info</a>
+                            </div>
+
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer" style="background-color: #444; padding: 30px; color: #fff;">
+        <div class="container text-center">
+            <h4> Copyright  <i class="fa fa-copyright"></i> By Bilal In 2021/2/26 TCC </h4>
+        </div>
+    </footer>
+
+    <script src="~/bootstrap 4/js/jquery-3.5.1.js"></script>
+    <script src="~/bootstrap 4/js/bootstrap.min.js"></script>
+    <script src="~/bootstrap 4/js/popper.min.js"></script>
+    <script>
+
+    </script>
+</body>
+</html>
+

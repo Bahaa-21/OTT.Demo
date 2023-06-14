@@ -1,0 +1,38 @@
+﻿@using Microsoft.AspNet.Identity
+
+@if (Request.IsAuthenticated)
+{
+
+        <ul class="nav navbar-nav navbar-right">
+            <li class="nav-item">
+                <a class="nav-link" href="#"><i class="fa fa-reply fa-x1"></i> Log Out</a>
+            </li>
+        </ul>
+    }
+
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li class="nav-item dropdown">
+            <a class="nav-link  dropdown-toggle login" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Log In
+                <i class="fa fa-angle-down" aria-hidden="true"></i>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="@Url.Action("LoginAdmin","Account")">Admin</a>
+                <a class="dropdown-item" href="@Url.Action("LoginOrg","Account")">Organizer</a>
+                <a class="dropdown-item" href="@Url.Action("LoginCustomer","Account")">Customer</a>
+
+            </div>
+        </li>
+        <li class="nav-item dropdown ">
+            <a class="nav-link dropdown-toggle register" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Register <i class="fa fa-angle-down" aria-hidden="true"></i>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="@Url.Action("RegisterCustomer","Account")">Customer</a>
+                <a class="dropdown-item" href="@Url.Action("RegisterOrg","Account")">Organizer</a>
+            </div>
+        </li>
+    </ul>
+}

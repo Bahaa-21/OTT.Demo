@@ -1,0 +1,240 @@
+﻿@using MVC_PROJECT.Models
+@model IEnumerable<MVC_PROJECT.Models.Notification>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link rel="shortcut icon" href="~/image/Background.png" style="border-radius: 50%;">
+    <link rel="stylesheet" href="~/bootstrap 4/css/animate.min.css">
+    <link rel="stylesheet" href="~/bootstrap 4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/bootstrap 4/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/Content/Style-page.css" >
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    @*@Styles.Render("~/Content/css")*@
+    @*@Scripts.Render("~/bundles/modernizr")*@
+
+</head>
+<body>
+    <header>
+        @*start Navbar*@
+        @if (object.ReferenceEquals(Session["UserId"],null))
+        {
+            <nav class="navbar navbar-expand-md  fixed-top">
+                <a class="navbar-brand" href="#">LOGO</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fa fa-list fa-lg"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+
+                    <form class="form-inline mt-2 mt-md-10 ml-auto">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <a href="@Url.Action("Search", "Home")"><button class="btn btn-outline-info" type="button"><i class="fa fa-search"></i></button></a>
+                            </div>
+
+                            <input type="search" class="form-control" placeholder="Search For Travel" aria-label="" aria-describedby="basic-addon1">
+                        </div>
+                    </form>
+
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="@Url.Action("Index", "Home")"><i class="fa fa-home fa-x1"></i> Home <span class="sr-only">(current)</span></a>
+                        </li>
+                        @*<li class="nav-item">
+                                <a class="nav-link" href="@Url.Action("Login","Account")">  Log In</a>
+                            </li>*@
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Problem", "Home")"><i class="fa fa-smile-o fa-x1"></i> Problem?</a>
+                        </li>
+                        @*<li class="nav-item dropdown ">
+                                <a class="nav-link dropdown-toggle register" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    register <i class="fa fa-angle-down" aria-hidden="true"></i>
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="@Url.Action("RegisterCustom","Account")">Customer</a>
+                                    <a class="dropdown-item" href="@Url.Action("RegisterOrg","Account")">Organizer</a>
+                                </div>
+                            </li>*@
+                        @*<li class="nav-item">
+                                <a class="nav-link" href="#"><i class="fa fa-reply fa-x1"></i> Log Out</a>
+                            </li>*@
+                    </ul>
+                    @Html.Partial("_LoginPartial")
+                </div>
+            </nav>
+        }
+        else
+        {
+            <nav class="navbar navbar-expand-md  fixed-top">
+                <a class="navbar-brand" href="#">LOGO</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fa fa-list fa-lg"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+
+                    <form class="form-inline mt-2 mt-md-10 ml-auto">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <a href="@Url.Action("Search", "Home")"><button class="btn btn-outline-info" type="button"><i class="fa fa-search"></i></button></a>
+                            </div>
+
+                            <input type="search" class="form-control" placeholder="Search For Travel" aria-label="" aria-describedby="basic-addon1">
+                        </div>
+                    </form>
+
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="@Url.Action("Index", "Home")"><i class="fa fa-home fa-x1"></i> Home <span class="sr-only">(current)</span></a>
+                        </li>
+                        
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Problem", "Home")"><i class="fa fa-smile-o fa-x1"></i> Problem?</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Logout", "Home")"><i class="fa fa-power-off fa-x1"></i> Logout</a>
+                        </li>
+                        
+                        <li class="nav-item" id="bell">
+                            <a class="nav-link">
+                                <i class="fa fa-bell-o"></i>
+                                @*<div class="icon"> <img src="https://i.imgur.com/AC7dgLA.png" alt=""> </div>*@
+                                <div class="notifications" id="box">
+                                    @{
+                                        using (var db = new Context())
+                                        {
+                                            var notes = (from item in db.Notification
+                                                         select item);
+                                            int countNot = 0;
+
+                                            foreach (var item in notes)
+                                            {
+                                                if (item.Id_To == Convert.ToInt32(Session["UserId"]))
+                                                {
+                                                    countNot++;
+                                                }
+
+
+                                            }
+                                            <h2>Notifications - <span>@countNot</span></h2>
+
+
+                                            foreach (var item in notes)
+                                            {
+                                                if (item.Id_To == Convert.ToInt32(Session["UserId"]))
+                                                {
+                                                    
+                                                    <div class="notifications-item">
+
+                                                        <img src="https://i.imgur.com/uIgDDDd.jpg" alt="img">
+                                                        <h4>From Admin</h4>
+                                                        <p>@item.ReplyText</p>
+                                                    </div>
+                                                     
+                                        }
+                                    }
+                                            }
+                                        }
+
+                                </div>
+                             </a>
+                        </li>
+     
+                    </ul>
+                </div>
+            </nav>
+        }
+
+        @*start Navbar*@
+        <div class="container body-content">
+            @RenderBody()
+            <hr />
+       
+        </div>
+        </header>
+        @*<div class="footer-bottom">
+
+            <div class="container d-md-flex py-4">
+                <div class="mr-md-auto text-center text-md-left">
+                    <div class="copyright">
+                        © Copyright <strong><span>Organizing Tourists Travel</span></strong>. All Rights Reserved
+                    </div>
+                    <div class="credits">
+                        Designed by <a href="#">Bilal Tillo</a>
+                    </div>
+                </div>
+                <div class="social-links text-center text-md-right pt-3 pt-md-0">
+                    <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+                    <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+                    <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
+                    <a href="#" class="google-plus"><i class="fa fa-skype"></i></a>
+                    <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>*@
+        
+    
+        <div id="buttom-up">
+            <i class="fa fa-angle-up" aria-hidden="true"></i>
+        </div>
+
+        <section class="loading-overlay">
+            <div class="spinner">
+                <div class="dot1"></div>
+                <div class="dot2"></div>
+            </div>
+        </section>
+
+
+        <script src="~/Scripts/jquery-3.5.1.js"></script>
+        <script src="~/Scripts/axios.js"></script>
+        <script src="~/Scripts/axios.min.js"></script>
+        <script src="~/bootstrap 4/js/bootstrap.min.js"></script>
+        <script src="~/bootstrap 4/js/popper.min.js"></script>
+        <script src="~/bootstrap 4/js/wow.min.js"></script>
+        <script>
+        new WOW().init();
+        </script>
+        <script src="~/Scripts/Home.js"></script>
+    <script>
+
+        //$(document).ready(function () {
+        //    $("#bell").click(function () {
+        //        $("#box").fadeToggle();
+        //    })
+        //})
+
+        $(document).ready(function () {
+
+
+            
+            var down = false;
+
+            $('#bell').click(function (e) {
+
+                var color = $(this).text();
+                if (down) {
+
+                    $('#box').css('height', '0px');
+                    $('#box').css('opacity', '0');
+                    down = false;
+                } else {
+
+                    $('#box').css('height', 'auto');
+                    $('#box').css('opacity', '1');
+                    down = true;
+
+                }
+
+            });
+
+        });
+    </script>
+
+
+</body>
+</html>

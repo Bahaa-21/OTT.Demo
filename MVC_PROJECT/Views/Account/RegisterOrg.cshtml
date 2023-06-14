@@ -1,0 +1,100 @@
+﻿@model MVC_PROJECT.Models.Organizing
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sing Up</title>
+    <link rel="stylesheet" href="~/bootstrap 4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/bootstrap 4/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/Content/style.css">>
+</head>
+<body>
+    <img class="wave" src="~/image/wave.png">
+    <div class="container orgnizing">
+        <div class="img">
+            <img src="~/image/Customer.svg" alt="">
+        </div>
+        <div class="login-content">
+            <form action="/Account/RegisterOrg" name="form" onsubmit="return matchpass()">
+                <img class="avatar" src="~/image/avatar.svg">
+                <h4 class="title" style="font-family: 'Courier New', Courier, monospace;">Welcome In <span style="color: #38d39f;">OTT</span></h4>
+                <div class="input-div one">
+                    <div class="i">
+                        <i class="fa fa-user"></i>
+                    </div>
+                    <div class="div">
+                        <input type="text" class="input" placeholder="Username">
+                    </div>
+                </div>
+                @Html.ValidationMessageFor(m => m.UserNameOrg, "", new { @class = "text-danger" })
+                <div class="row">
+                    <div class="col">
+                        <div class="input-div pass">
+                            <div class="i">
+                                <i class="fa fa-lock"></i>
+                            </div>
+                            <div class="div">
+                                <input type="password" class="input" placeholder="Password" name="PasswordOrg">
+                            </div>
+                        </div>
+                        @Html.ValidationMessageFor(m => m.PasswordOrg, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col">
+                        <div class="input-div pass password">
+                            <div class="i">
+                                <i class="fa fa-lock"></i>
+                            </div>
+                            <div class="div">
+                                <span toggle="#password-field" class="fa fa-fw fa-eye field_icon toggle-password" style="z-index: 999;"></span>
+                                <input type="password" id="pass_log_id" placeholder="RePassword" required name="RePassword" />
+                            </div>
+                        </div>
+                        @Html.ValidationMessageFor(m => m.RePassword, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="input-div pass">
+                    <div class="i">
+                        <i class="fa fa-envelope"></i>
+                    </div>
+                    <div class="div">
+                        <input type="email" class="input" placeholder="Email" name="EmailOrg">
+                    </div>
+                </div>
+                @Html.ValidationMessageFor(m => m.EmailOrg, "", new { @class = "text-danger" })
+                <div class="input-div pass">
+                    <div class="i">
+                        <i class="fa fa-phone"></i>
+                    </div>
+                    <div class="div">
+                        <input type="tel" class="input" placeholder="mobile" name="MobilePhoneOrg">
+                    </div>
+                </div>
+                @Html.ValidationMessageFor(m => m.MobilePhoneOrg, "", new { @class = "text-danger" })
+                <div class="input-div pass">
+                    <div class="i">
+                        <i class="fa fa-location-arrow"></i>
+                    </div>
+                    <div class="div">
+                        <input type="text" class="input" placeholder="Location" name="Address">
+                    </div>
+                </div>
+                @Html.ValidationMessageFor(m => m.Address, "", new { @class = "text-danger" })
+
+                <a href="@Url.Action("LoginOrg","Account")">Have An Account?</a>
+                <input type="submit" class="btn" value="Login">
+            </form>
+        </div>
+        <a href="@Url.Action("Index","Home")" class="Browes"> Browse Now </a>
+    </div>
+    <div class="daden"></div>
+    <script src="../bootstrap 4/js/jquery-3.5.1.js"></script>
+    <script src="../bootstrap 4/js/bootstrap.min.js"></script>
+    <script src="../bootstrap 4/js/popper.min.js"></script>
+    <script src="~/Scripts/javascript.js"></script>
+</body>
+</html>
+

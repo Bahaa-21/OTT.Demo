@@ -1,0 +1,100 @@
+﻿@model MVC_PROJECT.Models.Customers
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log-in</title>
+    <link rel="stylesheet" href="~/bootstrap 4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/bootstrap 4/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/Content/style.css">
+
+
+
+</head>
+<body>
+
+
+    <img class="wave" src="~/image/wave.png">
+
+    <div class="container">
+        <div class="img">
+            <img src="~/image/undraw_travelers_qlt1.svg" alt="">
+        </div>
+
+        <div class="login-content">
+
+            <form action="" method="post">
+                <img src="~/image/avatar.svg">
+
+                <h4 class="title">Welcome customer In OTT</h4>
+
+                <div class="input-div one">
+                    <div class="i">
+                        <i class="fa fa-user"></i>
+                    </div>
+                    <div class="div">
+                        <input type="text" class="input" placeholder="Email" name="EmailCustomer">
+
+                    </div>
+                </div>
+
+                <div class="input-div pass password">
+                    <div class="i">
+                        <i class="fa fa-lock"></i>
+                    </div>
+                    <div class="div">
+                        <span toggle="#password-field" class="fa fa-fw fa-eye field_icon toggle-password" style="z-index: 999;"></span>
+                        <input type="password" id="pass_log_id" placeholder="Password" name="PasswordCustomer" required />
+                    </div>
+                </div>
+
+                <a href="@Url.Action("RegisterCustomer","Account")">Creat Account</a>
+                <a href="#" onclick="togglepopup()">Forgot Password?</a>
+                <input type="submit" class="btn" value="Login">
+
+            </form>
+        </div>
+
+        <a href="@Url.Action("Index","Home")" class="Browes"> Browse Now </a>
+
+    </div>
+
+
+    <div class="popup" id="popup-1">
+        <div class="overlay"></div>
+        <div class="content">
+            <div class="close-btn" onclick="togglepopup()">&times;</div>
+            <h3>Create</h3>
+            <form>
+                <input type="email" name="EmailCustomer" id="email" placeholder="Email">
+                <input type="password" name="PasswordCustomer" id="pass" placeholder="password">
+                <button class="btn btn-info btn-block">Send</button>
+            </form>
+        </div>
+    </div>
+
+    //تعديل زر مشاهدة الموقع
+    <div class="daden"></div>
+
+    <script src="~/bootstrap 4/js/jquery-3.5.1.js"></script>
+    <script src="~/bootstrap 4/js/bootstrap.min.js"></script>
+    <script src="~/bootstrap 4/js/popper.min.js"></script>
+    <script src="~/Scripts/javascript.js"></script>
+    <script>
+      function togglepopup(){
+          document.getElementById("popup-1").classList.toggle("active");
+      }
+    </script>
+
+
+
+</body>
+</html>
+
+
+
+

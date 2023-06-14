@@ -1,0 +1,69 @@
+﻿
+@model MVC_PROJECT.Models.Breaks
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Info</title>
+    <link rel="stylesheet" href="~/bootstrap 4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/bootstrap 4/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylessheet" href="~/Content/style-form.css">
+    <link rel="stylesheet" href="~/Content/style-Admin.css">
+    <link rel="stylesheet" href="~/Content/slider.css">
+    <style>
+        div.content {
+            margin-left: 240px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <a href="@Url.Action("Index", "Home")"> <i class="fa fa-home fa-x2"></i> Home</a>
+        <a class="active" href="@Url.Action("HomeAdmin", "Admin")"> Admin</a>
+        <a href="@Url.Action("Travels", "Admin")">Travels</a>
+        <a href="@Url.Action("Problem", "Admin")"> Problem </a>
+        <ul class="list-unstyled">
+            <li> <i class="fa fa-facebook fa-lg"></i> </li>
+            <li> <i class="fa fa-whatsapp fa-lg"></i> </li>
+            <li> <i class="fa fa-telegram fa-lg"></i> </li>
+        </ul>
+
+    </div>
+
+    <div class="content">
+        @* Add Break *@
+        <div class="container region">
+            <h3> Edit Break </h3>
+            <form method="post" action="/Admin/EditBreak/">
+
+                <div class="form-group">
+                    <div class="form-group">
+                        <label for="Username">Breaks</label>
+                        
+                        <input type="text" class="form-control form-control-sm" placeholder="التعديل على الاستراحة" name="TypeBreak">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-info">Edit Break</button>
+               <input type="hidden" name="ID_Break" value="@Model.ID_Break" />
+            </form>
+        </div>
+    </div>
+
+    <script src="~/bootstrap 4/js/jquery-3.5.1.js"></script>
+    <script src="~/bootstrap 4/js/bootstrap.min.js"></script>
+    <script src="~/bootstrap 4/js/popper.min.js"></script>
+    <script src="~/Scripts/validation.js"></script>
+    <script>
+
+    </script>
+
+
+</body>
+</html>
+
+

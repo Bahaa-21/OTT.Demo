@@ -1,0 +1,138 @@
+﻿@model MVC_PROJECT.Models.DetailsVM.DetailsTripsVM
+@using MVC_PROJECT.Models
+@{
+
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Trip</title>
+    <link rel="stylesheet" href="~/bootstrap 4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/bootstrap 4/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/Content/style-organizing.css">
+    <link rel="stylesheet" href="~/Content/slider.css">
+    <style>
+        div .content{
+            margin-left : 240px;
+        }
+        .My-travel{
+            margin-bottom: 20px;
+            box-shadow: 0 4px 3px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            text-align : right
+        }
+    </style>
+
+</head>
+<body>
+
+    <div class="sidebar">
+        <div class="image">
+            <img src="~/image/cute cartoon portrait.jpg" alt="">
+            <h6> Sham al-laham </h6>
+        </div>
+        <a href="@Url.Action("Index","Home")"> <i class="fa fa-home fa-x2"></i> Home</a>
+        <a href="@Url.Action("HomeOrganizing","Organizing")">Orgnaizing</a>
+        <a class="active" href="@Url.Action("MyTrip","Organizing")"> My Trip </a>
+        <a href="@Url.Action("AddTrip","Organizing")">Add Travel</a>
+        <a href="@Url.Action("DeniedTrips","Organizing")"> Denied trips </a>
+
+
+        <ul class="list-unstyled">
+            <li> <i class="fa fa-facebook fa-lg"></i> </li>
+            <li> <i class="fa fa-whatsapp fa-lg"></i> </li>
+            <li> <i class="fa fa-telegram fa-lg"></i> </li>
+        </ul>
+
+    </div>
+
+    <div class="content" style="margin-left : 240px;">
+        <form method="POST" action="/Organizing/EditTravel/" name="form" id="editInfo">
+            <div class="container organizing">
+                <div class="row My-travel" dir="rtl">
+
+               <div class="col-md-12">
+                    <div class="form-group">
+                        <label>وصف الرحلة</label> 
+                        <textarea name="Descripition" class="form-control" cols="4" rows="4" placeholder="discription....." required>  </textarea>
+                    </div>
+                    <div class="form-group more">
+                        <label>وصف المحطة </label> 
+                        <textarea name="DescripitionStation" class="form-control" cols="2" rows="2" placeholder="مثلاً شرح موّسع عن تفاصيل الرحلة كوسيلة النقل و إن تواجد فريق تصوير "></textarea>
+                    </div>
+                </div>
+                   
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label>تاريخ العودة </label> 
+                                <input name="DateEnd" type="date" class="form-control" id="endgo" required>
+                            </div>
+                        </div>
+                      
+                        
+                        <div class="col">
+                            <div class="form-group">
+                                <label> مكان الانطلاق </label> @*مكان الانطلاق*@
+                                <input type="text" class="form-control" maxlength="20" name="Start_Location" id="From-where" " required>
+                            </div>
+                        </div>
+                       
+                        <div class="col">
+                            <div class="form-group">
+                                <label> Pepole Number </label> 
+                                <input name="Number_of_passengers" type="number" class="form-control" id="From-where" required>
+                            </div>
+                        </div>
+                    </div>
+                   
+                </div>
+                    
+                
+                <div class="col-md-12">
+                    <div class="row">
+
+                        <div class="col">
+                            <div class="form-group">
+                                <label> المسافة المقطوعة </label> 
+                                <input name="Distance" type="text" class="form-control" name="text" id="From-where" required>
+                            </div>
+                        </div>
+                      
+                        <div class="col">
+                            <div class="form-group">
+                                <label>بداية االاستراحة</label> 
+                                <input type="text" class="form-control" name="Station_Start" maxlength="24" required>
+                            </div>
+                        </div>
+                        
+                        <div class="col">
+                            <div class="form-group more">
+                                <label> اسم الاستراحة </label> 
+                                <input type="text" class="form-control" id="Place" name="NameBreak" maxlength="24" required>
+                            </div>
+                        </div>
+                      
+                    </div>
+                </div>
+                        <button type="submit" class="btn btn-primary btn-block" id="form-b">Edit Info</button>
+                    <input type="hidden" name="ID_Trip" value="@ViewBag.IdTrip" />
+                    @*<input type="hidden" name="ID_Station" value="@ViewBag.IdStation" />*@
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+
+                <script src="~/bootstrap 4/js/jquery-3.5.1.js"></script>
+                <script src="~/bootstrap 4/js/bootstrap.min.js"></script>
+                <script src="~/bootstrap 4/js/popper.min.js"></script>
+                <script src="~/Scripts/validation.js"></script>
+</body>
+</html>

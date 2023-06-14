@@ -1,0 +1,94 @@
+﻿@model MVC_PROJECT.Models.Customers
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sing Up</title>
+    <link rel="stylesheet" href="../bootstrap 4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../bootstrap 4/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link href="~/Content/style.css" rel="stylesheet" />
+</head>
+<body>
+    <img class="wave" src="../image/wave.png">
+    <div class="container customer">
+        <div class="img">
+            <img src="../image/Organizing.svg" alt="">
+        </div>
+        <div class="login-content">
+            <form action="/Account/RegisterCustomer" method="post">
+                <img class="avatar" src="../image/avatar.svg">
+                <h4 class="title" style="font-family: 'Courier New', Courier, monospace;">Welcome In <span style="color: #38d39f;">OTT</span></h4>
+                <div class="input-div one">
+                    <div class="i">
+                        <i class="fa fa-user"></i>
+                    </div>
+                    <div class="div">
+                        <input type="text" class="input" placeholder="Username" name="UserNameC">
+                    </div>
+                </div>
+                <div class="input-div pass password">
+                    <div class="i">
+                        <i class="fa fa-lock"></i>
+                    </div>
+                    <div class="div">
+                        <span toggle="#password-field" class="fa fa-fw fa-eye field_icon toggle-password" style="z-index: 999;"></span>
+                        <input type="password" id="pass_log_id" name="PasswordCustomer" placeholder="Password" required />
+                    </div>
+                </div>
+
+                <div class="input-div pass password">
+                    <div class="i">
+                        <i class="fa fa-lock"></i>
+                    </div>
+                    <div class="div">
+                        RepasswordC
+                        <span toggle="#password-field" class="fa fa-fw fa-eye field_icon toggle-password" style="z-index: 999;"></span>
+                        <input type="password" id="pass_log_id" name="RepasswordC" placeholder="Password" required />
+                    </div>
+                </div>
+                @Html.ValidationMessageFor(m => m.RepasswordC, "", new { @class = "text-danger" })
+                <div class="input-div pass">
+                    <div class="i">
+                        <i class="fa fa-envelope"></i>
+                    </div>
+                    <div class="div">
+                        <input type="email" class="input" placeholder="Email" name="EmailCustomer">
+                    </div>
+                </div>
+                @Html.ValidationMessageFor(m => m.EmailCustomer, "", new { @class = "text-danger" })
+                <div class="input-div pass">
+                    <div class="i">
+                        <i class="fa fa-phone"></i>
+                    </div>
+                    <div class="div">
+                        <input type="tel" class="input" name="MobilePhoneC" placeholder="mopile">
+                    </div>
+                </div>
+                @Html.ValidationMessageFor(m => m.MobilePhoneC, "", new { @class = "text-danger" })
+                @*<div class="input-div pass">
+                        <div class="i">
+                            <i class="fa fa-location-arrow"></i>
+                        </div>
+                        @*<div class="div">
+                            <input type="text" class="input" placeholder="Location">
+                        </div>*
+                    </div>*@
+                <a href="@Url.Action("LoginCustomer","Account")">Have An Account?</a>
+                <input type="submit" class="btn" value="Login">
+            </form>
+        </div>
+        <a href="@Url.Action("Index","Home")" class="Browes"> Browes Now </a>
+    </div>
+    <div class="popup" id="popup-1">
+        <div class="overlay"></div>
+    </div>
+    <script src="../bootstrap 4/js/jquery-3.5.1.js"></script>
+    <script src="../bootstrap 4/js/bootstrap.min.js"></script>
+    <script src="../bootstrap 4/js/popper.min.js"></script>
+    <script src="~/Scripts/javascript.js"></script>
+</body>
+</html>

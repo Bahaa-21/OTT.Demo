@@ -1,0 +1,87 @@
+﻿@using MVC_PROJECT.Models.DetailsVM
+@model RefuseTripsVM
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Info</title>
+    <link rel="stylesheet" href="~/bootstrap 4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/bootstrap 4/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/Customer/style-form.css">
+    <link rel="stylesheet" href="~/Content/style-Admin.css">
+    <link rel="stylesheet" href="~/Content/slider.css">
+    <style>
+        div.content {
+            margin-left: 240px;
+        }
+    </style>
+</head>
+<body>
+
+
+    <div class="sidebar">
+        <a href="@Url.Action("Index","Home")"> <i class="fa fa-home fa-x2"></i> Home</a>
+        <a href="@Url.Action("HomeAdmin","Admin")"> Admin</a>
+        <a class="active" href="@Url.Action("Travels","Admin")">Travels</a>
+        <a href="@Url.Action("Problem","Admin")"> Problems </a>
+        <ul class="list-unstyled">
+            <li> <i class="fa fa-facebook fa-lg"></i> </li>
+            <li> <i class="fa fa-whatsapp fa-lg"></i> </li>
+            <li> <i class="fa fa-telegram fa-lg"></i> </li>
+        </ul>
+    </div>
+
+    <div class="content travels">
+        <div class="container">
+            <div class="row">
+                
+                @foreach (var item in Model.trips)
+                {
+                    <div class="col-md-4">
+                        <form method="post" action="/Admin/Travels/">
+
+                            <div class="card">
+                                <img src="~/image/output-onlinejpgtools (5).jpg" alt="">
+                                <div class="card-body">
+                                    <h3 class="card-title"> @item.Organizing.UserNameOrg</h3>
+                                    <p> @item.Descripition </p>
+                                    <div class="card-footer">
+                                        @*<button type="button" class="btn btn-info">Acceptance</button>*@
+                                        <button type="submit" class="btn btn-danger">Refusal</button>
+                                    </div>
+                                    <div class="form-group">
+                                        <textarea class="form-control" name="TextRefuse"></textarea>
+                                        <input type="hidden" name="Id_t" value="@item.ID_Trip" />
+                                        <input type="hidden" name="ID_Org" value="@item.ID_Organizer" />
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                }
+                
+            </div>
+
+        </div>
+    </div>
+
+    <div class="daden"></div>
+
+    <script src="~/bootstrap 4/js/jquery-3.5.1.js"></script>
+    <script src="~/bootstrap 4/js/bootstrap.min.js"></script>
+    <script src="~/bootstrap 4/js/popper.min.js"></script>
+    <script src="~/Scripts/validation.js"></script>
+    <script>
+
+    </script>
+
+
+</body>
+</html>
+

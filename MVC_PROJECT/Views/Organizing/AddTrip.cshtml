@@ -1,0 +1,188 @@
+﻿@using MVC_PROJECT.Models
+@model MultibleData
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Trip</title>
+    <link rel="stylesheet" href="~/bootstrap 4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/bootstrap 4/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/Content/style-form.css">
+    <link rel="stylesheet" href="~/Content/style-organizing.css">
+    <link rel="stylesheet" href="~/Content/slider.css">
+
+    <style>
+        div.content {
+            margin-left: 240px;
+        }
+        .My-travel{
+            margin-top: 30px;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        border-radius: 10px;
+    }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="image">
+            <img src="~/image/nourman.jpg" alt="">
+            <h6> Sham </h6>
+        </div>
+        <a href="@Url.Action("Index","Home")">
+            <i class="fa fa-home fa-x2"></i> Home
+        </a>
+        <a href="@Url.Action("HomeOrganizing","Organizing")"> Orgnaizing</a>
+        <a class="active" href="@Url.Action("AddTrip","Organizing")">Add Trip</a>
+        <a href="@Url.Action("DeniedTrips","Organizing")"> Denied Trips </a>
+        <a href="@Url.Action("logout", "Home")"> LogOut </a>
+    </div>
+    <div class="content">
+        <div class="My-travel">
+            <form method="POST" name="form" id="form1" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="sel1">تصنيف الرحلة</label> @*تصنيف الرحلة*@
+                    <select name="ID_Class" class="form-control" id="sel1" required>
+                        @foreach (var item in Model.Type)
+                        {
+                            <option value="@item.ID_Class">@item.Type</option>
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>وصف الرحلة</label> @*وصف الرحلة*@
+                    <textarea name="Descripition" class="form-control" cols="4" rows="4" placeholder="discription....." required>  </textarea>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label>تاريخ الانطلاق </label> @*تاريخ الانطلاق*@
+                            <input name="DateStart" type="date" class="form-control" id="startgo" required>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label>تاريخ العودة </label> @*تاريخ العودة*@
+                            <input name="DateEnd" type="date" class="form-control" id="endgo" required>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label>التكلفة</label> @*التكلفة*@
+                            <input name="Price" type="text" class="form-control" id="price" required>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label> قائمة المناطق السياحية </label> @*قائمة المناطق السياحية*@
+                            <input type="text" class="form-control" id="place" name="Name_Region" maxlength="24" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label> مكان الانطلاق </label> @*مكان الانطلاق*@
+                            <input type="text" class="form-control" maxlength="20" name="Start_Location" id="From-where" required>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label> عدد الركاب </label> @*عدد الركاب*@
+                            <input name="Number_of_passengers" type="text" class="form-control" id="From-where" required>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label> المسافة المقطوعة </label> @*المسافة المقطوعة*@
+                            <input name="Distance" type="text" class="form-control" id="From-where" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="custom-file">
+                    <input name="Photo_Trips" type="file" class="custom-file-input" id="file" multiple>
+                    <label class="custom-file-label" for="customFile">صور عن الرحلة</label> @*صور عن الرحلة*@
+                </div>
+                <div class="row" id="Station">
+                    <div class="col-md-4 col-sm-12 Add-mahata text-center">
+                        <h3>Add new station  </h3>
+                        <button name="NameStation" type="button" class="btn btn-danger" id="Button1">  <i class="fa fa-plus fa-lg"></i> </button>
+                    </div>
+                    <div class="col-md-8 col-sm-12 mahata">
+                        <div class="row" class="Add-Station" id="Container">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label>Number of station</label>
+                                    <input type="text" class="form-control" name="NumberStation" maxlength="24" placeholder="يتم وضع ترتيب المحطات رقمياً" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>بداية الاستراحة</label> @*بداية الاستراحة*@
+                                    <input type="text" class="form-control" name="Station_Start" maxlength="24" required>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group more">
+                                    <label for="sel1">نوع الاستراحة</label> @*نوع الاستراحة*@
+                                    <select name="ID_Break" class="form-control" id="sel1" required>
+                                        @foreach (var item in Model.breaks)
+                                        {
+                                            <option value="@item.ID_Break">@item.TypeBreak</option>
+                                        }
+                                    </select>
+                                </div>
+
+                                <div class="form-group more">
+                                    <label>وصف المحطة</label> @*وصف المحطة*@
+                                    <textarea name="DescripitionStation" class="form-control" cols="2" rows="2" placeholder="مثلاً شرح موّسع عن تفاصيل الرحلة كوسيلة النقل و إن تواجد فريق تصوير "></textarea>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group more">
+                                    <label> أسم الاستراحة </label> @*اسم الاستراحة*@
+                                    <input type="text" class="form-control" id="Place" name="NameBreak" maxlength="24" required>
+                                </div>
+                                <div class="custom-file more" style="margin-top: 30px;">
+                                        <input name="PhotoStation" type="file" class="custom-file-input" id="File">
+                                        <label class="custom-file-label" for="customFile">صور عن الاستراحة</label>
+                                    </div>
+                            </div>
+                        </div>
+                        <div id="new-Station">
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-info" style="margin-top: 40px;"> Add The Trip </button>
+            </form>
+            <p><a href="@Url.Action("ExampleAddTrip","Trip")"> Example of add trip </a></p>
+        </div>
+    </div>
+
+
+   
+    <script src="~/Scripts/JQuery.js"></script>
+    <script src="~/bootstrap 4/js/jquery-3.5.1.js"></script>
+    <script src="~/bootstrap 4/js/bootstrap.min.js"></script>
+    <script src="~/bootstrap 4/js/popper.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#Button1').on('click', function () {
+                var number = $('#number');
+                number += 1;
+                $('#Container').clone().appendTo("#new-Station");
+            });
+
+            $('#Button1').on('click', function () {
+                $("#new-Station").fadeIn();
+            });
+
+        });
+    </script>
+</body>
+</html>
+
+

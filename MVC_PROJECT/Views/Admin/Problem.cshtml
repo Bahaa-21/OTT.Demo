@@ -1,0 +1,84 @@
+﻿@using MVC_PROJECT.Models.DetailsVM
+@model NoticationVM
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Info</title>
+    <link rel="stylesheet" href="../bootstrap 4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../bootstrap 4/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/Content/style-form.css">
+    <link rel="stylesheet" href="~/Content/style-Admin.css">
+    <link rel="stylesheet" href="~/Content/slider.css">
+    <style>
+        div.content {
+            margin-left: 240px;
+        }
+    </style>
+</head>
+<body>
+
+
+    <div class="sidebar">
+        <a href="@Url.Action("Index","Home")"> <i class="fa fa-home fa-x2"></i> Home</a>
+        <a href="@Url.Action("HomeAdmin","Admin")"> Admin</a>
+        <a href="@Url.Action("Travels","Admin")">Travels</a>
+        <a class="active" href="@Url.Action("Problem","Admin")"> Problem </a>
+        <ul class="list-unstyled">
+            <li> <i class="fa fa-facebook fa-lg"></i> </li>
+            <li> <i class="fa fa-whatsapp fa-lg"></i> </li>
+            <li> <i class="fa fa-telegram fa-lg"></i> </li>
+        </ul>
+    </div>
+    
+    <div class="content">
+        <div class="container">
+            @{
+                int count = 0;
+                foreach (var item in Model.complaint)
+                {
+                    count++;
+                    <div class="the-broplem">
+                        <h3> Problem number : @count </h3> <br />
+                        <h5> The date of the complaint : @item.DateComplaint </h5>
+                        <p class="lead"> @item.DescraptionComplaint </p>
+                        <form action="/Admin/Problem" method="post">
+                            <input type="hidden" name="ID_To" value="@item.ID_Customer">
+                            <div class="form-group">
+                                <textarea class="form-control" name="ReplyText"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-danger">Replay</button>
+
+                            </div>
+                        </form>
+
+
+                    </div>
+                }
+            }
+           
+
+        </div>
+    </div>
+
+
+
+
+
+
+    <script src="~/Scripts/jquery-3.5.1.js"></script>
+    <script src="../bootstrap 4/js/bootstrap.min.js"></script>
+    <script src="../bootstrap 4/js/popper.min.js"></script>
+    <script src="~/Scripts/validation.js"></script>
+    <script>
+
+    </script>
+
+
+</body>
+</html>

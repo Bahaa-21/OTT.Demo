@@ -1,0 +1,96 @@
+﻿@model IEnumerable<Breaks>
+@using MVC_PROJECT.Models
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Info Breaks</title>
+    <link rel="stylesheet" href="~/bootstrap 4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/bootstrap 4/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylessheet" href="~/Content/style-form.css">
+    <link rel="stylesheet" href="~/Content/style-Admin.css">
+    <link rel="stylesheet" href="~/Content/slider.css">
+    <style>
+        div.content{
+            margin-left : 240px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="sidebar">
+        <a href="@Url.Action("Index", "Home")"> <i class="fa fa-home fa-x2"></i> Home</a>
+        <a class="active" href="@Url.Action("HomeAdmin", "Admin")"> Admin</a>
+        <a href="@Url.Action("Travels", "Admin")">Trips</a>
+        <a href="@Url.Action("Problem", "Admin")"> Problem </a>
+        <ul class="list-unstyled">
+            <li> <i class="fa fa-facebook fa-lg"></i> </li>
+            <li> <i class="fa fa-whatsapp fa-lg"></i> </li>
+            <li> <i class="fa fa-telegram fa-lg"></i> </li>
+        </ul>
+    </div>
+
+    <div class="content">
+        @* Add Break *@
+        <div class="container region">
+            <h3> Add a Break </h3>
+            @using (Html.BeginForm("AddBreak", "Admin", FormMethod.Post))
+            {
+                <div class="row">
+                    <div class="col-md-8 col-xs-12">
+
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="TypeBreak">
+                        </div>
+                        <button class="btn btn-danger">Add Break</button> <br /> <br />
+                    </div>
+                </div>
+            }
+            @*اضافة جدول*@
+            <table class="table table-striped table-responsive-sm">
+                <caption>Number The Break Is </caption>
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Type Break</th>
+                        <th scope="col">Edit</th>
+                        <th></th>
+                        <th></th>
+                        <th scope="col">Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        int count=0;
+                        foreach (var item in Model)
+                        {
+                            count++ ;
+                            <tr>
+                                <th scope="row">@item.ID_Break</th>
+                                <td>@item.TypeBreak</td>
+                                <td><a href="@Url.Action("EditBreak","Admin",new {id=item.ID_Break})"> <button type="submit" class="btn btn-info" data-target="#edit"> Edit </button></a></td>
+                                <td></td>
+                                <td></td>
+                                <td><a href="@Url.Action("DeleteBreak", "Admin" , new {id=item.ID_Break })"> <button type="submit" class="btn btn-info">Delete</button></a></td>
+                            </tr>
+                        }
+                    }
+                   
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="~/bootstrap 4/js/jquery-3.5.1.js"></script>
+    <script src="~/bootstrap 4/js/bootstrap.min.js"></script>
+    <script src="~/bootstrap 4/js/popper.min.js"></script>
+    <script src="~/Scripts/validation.js"></script>
+    <script>
+    </script>
+</body>
+</html>
+
+

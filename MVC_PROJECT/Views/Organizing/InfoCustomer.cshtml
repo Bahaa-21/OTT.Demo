@@ -1,0 +1,88 @@
+﻿@model IEnumerable<MVC_PROJECT.Models.TripsCustomer>
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Info</title>
+    <link rel="stylesheet" href="~/bootstrap 4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/bootstrap 4/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/Content/style-form.css">
+    <link rel="stylesheet" href="~/Content/style-organizing.css">
+    <link rel="stylesheet" href="~/Content/slider.css">
+    <style>
+        div.content {
+            margin-left: 240px;
+        }
+    </style>
+</head>
+<body>
+
+
+    <div class="sidebar">
+        <div class="image">
+       
+            <img src="~/image/cute cartoon portrait.jpg" />
+            <h6> Sham Al-laham </h6>
+        </div>
+        <a href="@Url.Action("Index","Home")"> <i class="fa fa-home fa-x2"></i> Home</a>
+        <a href="@Url.Action("HomeOrganizing","Organizing")"> Orgnaizing</a>
+        <a href="@Url.Action("AddTrip","Organizing")">Add Trip</a>
+        <a href="@Url.Action("DeniedTrips","Organizing")"> Denied Trip </a>
+        <ul class="list-unstyled">
+            <li> <i class="fa fa-facebook fa-lg"></i> </li>
+            <li> <i class="fa fa-whatsapp fa-lg"></i> </li>
+            <li> <i class="fa fa-telegram fa-lg"></i> </li>
+        </ul>
+    </div>
+
+    <div class="content">
+        <div class="container">
+            <div class="table">
+                <table class="table table-striped table-responsive-sm">
+                    <caption>The list of those who joined the trip</caption>
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">User Name</th>
+                            <th scope="col">Mobile </th>
+                            <th scope="col">Email</th>
+                           
+                            <th scope="col">Check</th>
+                           
+                        </tr>
+                    </thead>
+                    <tbody>
+                       
+                        @foreach (var item in Model)
+                        {
+                            
+                            <tr>
+                                <th scope="row">@item.id_Customer</th>
+                                <td>@item.Customers.UserNameC</td>
+                                <td>@item.Customers.MobilePhoneC</td>
+                                <td>@item.Customers.EmailCustomer</td>
+                                
+                                <td><input type="checkbox"></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/bootstrap 4/js/jquery-3.5.1.js"></script>
+    <script src="~/bootstrap 4/js/bootstrap.min.js"></script>
+    <script src="~/bootstrap 4/js/popper.min.js"></script>
+    <script src="~/Scripts/validation.js"></script>
+    <script>
+
+    </script>
+
+
+</body>
+</html>
